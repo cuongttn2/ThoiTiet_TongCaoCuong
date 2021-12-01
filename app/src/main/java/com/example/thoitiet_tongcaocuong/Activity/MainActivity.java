@@ -10,15 +10,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.Manifest;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -55,23 +60,24 @@ import com.example.thoitiet_tongcaocuong.Adapter.AdapterHourly;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int NOTIFICATION_ID = 1;
     String citydefault; // city default
     ActivityMainBinding binding;
     ArrayList<Weather> weatherList;
     AdapterHourly adapterHourly;
 
     private LocationManager locationManager;
-    private int PERMISSION_CODE = 1;
+    private static final int PERMISSION_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-/*-----------------------------------------------------------------------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------------------------------------------------------------------*/
         // custom actionbar
 //        color
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.design_default_color_primary)));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.textmain)));
 //        title
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.custom_title_action_bar);
@@ -93,23 +99,40 @@ public class MainActivity extends AppCompatActivity {
 //      default location
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, PERMISSION_CODE);
         }
+
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
-/*-----------------------------------------------------------------------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------------------------------------------------------------------*/
 //      set cityname
-        citydefault =  getCity(location.getLongitude(),location.getLatitude());
+
+        try {
+            if (citydefault == null) {
+                String str = "hanoi";
+                citydefault = str;
+            } else
+                citydefault = getCity(location.getLongitude(), location.getLatitude());
+
+            GetHourlyWeather(citydefault);
+            sendNotification1();
+//            sendNotification3();
+
+        } catch (Exception exceptione) {
+            sendNotification2();
+        }
+
 //        String test = getCity(location.getLongitude(),location.getLatitude());
-//
+
         /*-----------------------------------------------------------------------------------------------------------------------------------------*/
 //      get weather hourly
-        GetHourlyWeather(citydefault);
+//        GetHourlyWeather(citydefault);
         GetCurrentWeather1(citydefault);
         GetCurrentWeather2(citydefault);
 
-/*-----------------------------------------------------------------------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------------------------------------------------------------------*/
 //      search, weather of default city
         binding.btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         GetCurrentWeather1(cityname);
         GetCurrentWeather2(cityname);
 
-/*-----------------------------------------------------------------------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------------------------------------------------------------------*/
 //      reload location
         binding.imgLoadLoaction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +172,56 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }// end onCreate
+
+    //  Noftiication
+    private int getNotificationId(){
+
+        return (int) new Date().getTime();
+    }
+
+    private void sendNotification2() {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.weather_screen_icon);
+
+        Notification notification = new Notification.Builder(this)
+                .setContentTitle("Turn on GPS ")
+                .setContentText("Message")
+                .setSmallIcon(R.drawable.ic_baseline_message_24)
+                .setLargeIcon(bitmap)
+                .build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(getNotificationId(), notification);
+    }
+
+
+    private void sendNotification1() {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.weather_screen_icon);
+
+        Notification notification = new Notification.Builder(this)
+                .setContentTitle("Turn on GPS when using the app")
+                .setContentText("Message")
+                .setSmallIcon(R.drawable.ic_baseline_message_24)
+                .setLargeIcon(bitmap)
+                .build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(getNotificationId(), notification);
+
+
+    }
+
+    private void sendNotification3() {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.weather_screen_icon);
+
+        Notification notification = new Notification.Builder(this)
+                .setContentTitle("it's raining today")
+                .setContentText("Message")
+                .setSmallIcon(R.drawable.ic_baseline_message_24)
+                .setLargeIcon(bitmap)
+                .build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(getNotificationId(), notification);
+
+
+    }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -183,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*-----------------------------------------------------------------------------------------------------------------------------------------*/
-    // check permission
+    // check permission,     PEMISSION LOCCATION
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -192,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "pesmission grant", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "please provide the permission ", Toast.LENGTH_SHORT).show();
-                finish();
+//                finish();
             }
         }
     }
@@ -202,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
     public void GetHourlyWeather(String data) {
 //
         String url = "https://api.openweathermap.org/data/2.5/forecast?q=" + data + "&units=metric&appid=3fbb62a8024142917b9a91b892b8f53f";
+//       String url = "https://api.openweathermap.org/data/2.5/forecast?q=" + data + "&units=metric&appid=3fbb62a8024142917b9a91b892b8f53f";
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -237,12 +311,15 @@ public class MainActivity extends AppCompatActivity {
                                 JSONArray jsonArrayWeather = jsonObjectList.getJSONArray("weather");
                                 JSONObject jsonObjectWeather = jsonArrayWeather.getJSONObject(0);
                                 String icon = jsonObjectWeather.getString("icon");
+
+
 //                      add hour
                                 weather = new Weather(hour, temMax, temMin, icon);
 
                                 weatherList.add(weather);
 
                             }//end for
+
                             Collections.reverse(weatherList);
                             adapterHourly = new AdapterHourly(MainActivity.this, weatherList);
                             binding.rvHourly.setAdapter(adapterHourly);
@@ -303,6 +380,8 @@ public class MainActivity extends AppCompatActivity {
                     String country = jsonObjectCity.getString("country");
                     binding.tvCityCountry.setText("Country: " + country);
                     //----------------------------------------------------------------------
+
+
                     // channge background
                     if (lDay > lTimeRise && lDay < lTimeSet) {
                         if (binding.tvWtMain.equals("Rain")) {
@@ -427,5 +506,6 @@ public class MainActivity extends AppCompatActivity {
                 });
         requestQueue.add(stringRequest);
     }
+
 
 }//end

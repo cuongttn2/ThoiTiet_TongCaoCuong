@@ -25,6 +25,19 @@
         <entry key="..\:/Android_devpro/ThoiTiet_TongCaoCuong/app/src/main/res/layout/item_string_list.xml" value="0.176" />
         <entry key="..\:/Android_devpro/ThoiTiet_TongCaoCuong/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/Android_devpro/ThoiTiet_TongCaoCuong/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2786458333333333" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/drawable/boder_btn.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.33055555555555555" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/drawable/ic_baseline_btn_search_24.xml" value="0.33055555555555555" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.33055555555555555" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/drawable/ic_baseline_message_24.xml" value="0.33055555555555555" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/drawable/ic_baseline_next_page_24.xml" value="0.33055555555555555" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/drawable/ic_baseline_prev_page_24.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/drawable/ic_launcher_background.xml" value="0.33055555555555555" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/layout/activity_next_day.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/layout/activity_search.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/layout/custom_title_action_bar.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/Asus/Desktop/ThoiTiet_TongCaoCuong/app/src/main/res/layout/item_rv_hourly.xml" value="0.35052083333333334" />
       </map>
     </option>
   </component>

@@ -37,7 +37,7 @@ public class SearchActivity extends AppCompatActivity {
         /*-----------------------------------------------------------------------------------------------------------------------------------------*/
         // custom actionbar
 //        color
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.design_default_color_primary)));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.textmain)));
 //        title
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.custom_title_action_bar);

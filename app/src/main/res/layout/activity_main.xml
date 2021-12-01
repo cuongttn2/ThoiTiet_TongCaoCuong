@@ -26,7 +26,7 @@
                     android:layout_alignParentLeft="true"
                     android:background="@drawable/boder_btn"
                     android:text="FIND CITIES"
-                    android:textColor="@color/white"
+                    android:textColor="#FF9800"
                     android:textSize="16dp"
                     android:textStyle="bold"></Button>
 
@@ -37,7 +37,7 @@
                     android:layout_alignParentRight="true"
                     android:background="@drawable/boder_btn"
                     android:text="NEXT DAYS"
-                    android:textColor="@color/white"
+                    android:textColor="#FF9800"
                     android:textSize="16dp"
                     android:textStyle="bold"></Button>
 
@@ -215,7 +215,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="@string/hourly"
-                android:textColor="#7446F3"
+                android:textColor="#FF9800"
                 android:textSize="22dp"
                 android:textStyle="bold"></TextView>
 
@@ -235,7 +235,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="@string/weather"
-                android:textColor="#7446F3"
+                android:textColor="#FF9800"
                 android:textSize="22dp"
                 android:textStyle="bold"></TextView>
 
@@ -276,7 +276,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="@string/wind"
-                android:textColor="#7446F3"
+                android:textColor="#FF9800"
                 android:textSize="22dp"
                 android:textStyle="bold"></TextView>
 
@@ -317,7 +317,7 @@
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="@string/city"
-                android:textColor="#7446F3"
+                android:textColor="#FF9800"
                 android:textSize="22dp"
                 android:textStyle="bold"></TextView>
 
