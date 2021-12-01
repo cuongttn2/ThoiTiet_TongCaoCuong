@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">WEATHER FORECAST</string>
+    <!--  menu text   -->
+    <string name="weekly">Weekly</string>
+    <string name="hourly">Hourly</string>
+    <string name="weather">Weather</string>
+    <string name="wind">Wind</string>
+    <string name="city">City</string>
+    <string name="nextday">NEXT DAYS</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.thoitiet_tongcaocuong">
+    <!--  -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/weather_screen_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/weather_screen_icon"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ThoiTiet_TongCaoCuong">
+        <activity
+            android:name="com.example.thoitiet_tongcaocuong.Activity.SearchActivity"
+            android:exported="true" />
+        <activity android:name="com.example.thoitiet_tongcaocuong.Activity.NextDayActivity" />
+        <activity android:name="com.example.thoitiet_tongcaocuong.Activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
